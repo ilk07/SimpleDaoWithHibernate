@@ -8,13 +8,14 @@
 После этого доступны выборки из БД по адресу <code>localhost:8080/persons/{endpoint}?{params}</code>
 
 | Endpoint         |  Параметры   |                                                                                                        Пример |
-|------------------|:------------:|--------------------------------------------------------------------------------------------------------------:|
-| /by-city         |     city     |                                            [/by-city?city=moscow](localhost:8080/persons/by-city?city=moscow) |
-| /by-age          |     age      |                                                        [/by-age?age=34](localhost:8080/persons/by-age?age=34) |
-| /by-name-surname | name,surname |  [/by-name-surname?name=Olga&surname=Savina](localhost:8080/persons/by-name-surname?name=Olga&surname=Savina) |  
+|:------------------|:------------:|:--------------------------------------------------------------------------------------------------------------|
+| <code>/by-city</code>         |     city     |[/by-city?city=moscow](localhost:8080/persons/by-city?city=moscow) |
+| <code>/by-age</code>          |     age      |[/by-age?age=34](localhost:8080/persons/by-age?age=34) |
+| <code>/by-name-surname</code> | name,<br>surname |  [/by-name-surname?name=Olga&surname=Savina](localhost:8080/persons/by-name-surname?name=Olga&surname=Savina) |  
 
   
 ### Данные таблицы Persons
+
 |  age  | name |  surname  |   city    |      phone      |
 |:-----:|:----:|:---------:|:---------:|:---------------:|
 |  11   |Trofim|  Petrov   |  SARATOV  |  +79001002020   |
@@ -24,6 +25,7 @@
 |  21   |Egor|  Ivanov   |  MOSCOW   |  +79001002010   |
 |  24   | Aleksey|  Vodonos  |  MOSCOW   |  +79001002080   |
 |  69   | Stepan|  Egorov   |   OSLO    |  +79001002040   |
+
 *Все данные вымышленные, представлены исключительно для демонстрации возможностей приложения* 
 
 
