@@ -2,7 +2,6 @@ package com.homeworks.simpledaolayerhibernatejpa.controller;
 
 import com.homeworks.simpledaolayerhibernatejpa.entity.Person;
 import com.homeworks.simpledaolayerhibernatejpa.repository.PersonsRepository;
-import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
