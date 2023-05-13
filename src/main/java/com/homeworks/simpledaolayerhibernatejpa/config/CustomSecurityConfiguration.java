@@ -4,12 +4,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class CustomSecurityConfiguration {
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true, jsr250Enabled = true)
+public class CustomSecurityConfiguration extends GlobalMethodSecurityConfiguration {
 
     @Bean
     public BCryptPasswordEncoder encoder() {
@@ -17,33 +19,22 @@ public class CustomSecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-        http.formLogin()
-                .and()
-                .authorizeRequests().antMatchers("/persons/").permitAll()
-                .and()
-                .authorizeRequests().antMatchers("/by-city").hasAuthority("read")
-                .and()
-                .authorizeRequests().antMatchers("/by-age").hasAuthority("read")
-                .and()
-                .authorizeRequests().antMatchers("/by-name-surname").hasAuthority("read")
-                .and()
-                .authorizeRequests()
-                .anyRequest()
-                .authenticated();
-
-        return http.build();
-    }
-
-    @Bean
     public AuthenticationManager authManager(HttpSecurity http) throws Exception {
 
         AuthenticationManagerBuilder authManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+
         authManagerBuilder.inMemoryAuthentication()
-                .withUser("user")
+                .withUser("Eli")
                 .password(encoder().encode("password"))
-                .authorities("read","write","sleep","eat","enjoy");
+                .roles("READ", "WRITE", "DELETE")
+                .and()
+                .withUser("Anna")
+                .password(encoder().encode("password"))
+                .roles("READ")
+                .and()
+                .withUser("John")
+                .password(encoder().encode("password"))
+                .roles("READ", "WRITE");
 
         return authManagerBuilder.build();
     }
